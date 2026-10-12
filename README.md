@@ -8,4 +8,9 @@ hx-dns subdomains target.com | hx-alive batch --live-only
 hx-alive probe www.target.com --json
 ```
 
-MIT — HackerX Official
+HackerX License
+
+## License
+
+Licensed under the [HackerX License](./LICENSE). Redistributions must retain copyright,
+license text, and [NOTICE](./NOTICE) attribution per the license terms.
