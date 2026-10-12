@@ -46,9 +46,7 @@ program
       const out = opts.liveOnly ? results.filter((r) => r.alive) : results;
       const summary = summarizeBatch(results);
       if (opts.json)
-        console.log(
-          opts.summary ? toJsonReport(out, summary) : JSON.stringify(out, null, 2),
-        );
+        console.log(opts.summary ? toJsonReport(out, summary) : JSON.stringify(out, null, 2));
       else out.forEach((r) => console.log(formatTableRow(r)));
     },
   );
