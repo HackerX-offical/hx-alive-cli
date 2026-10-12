@@ -35,12 +35,15 @@ export async function probeHost(host: string, timeoutMs = 12000): Promise<AliveR
     let tlsSubject: string | undefined;
     try {
       tlsSubject = await new Promise((resolve) => {
-        const s = tls.connect({ host: clean, port: 443, servername: clean, rejectUnauthorized: false }, () => {
-          const cert = s.getPeerCertificate();
-          s.end();
-          const cn = cert.subject?.CN;
-          resolve(Array.isArray(cn) ? cn[0] : cn);
-        });
+        const s = tls.connect(
+          { host: clean, port: 443, servername: clean, rejectUnauthorized: false },
+          () => {
+            const cert = s.getPeerCertificate();
+            s.end();
+            const cn = cert.subject?.CN;
+            resolve(Array.isArray(cn) ? cn[0] : cn);
+          },
+        );
         s.setTimeout(5000, () => {
           s.destroy();
           resolve(undefined);
@@ -71,10 +74,7 @@ export async function probeHost(host: string, timeoutMs = 12000): Promise<AliveR
   }
 }
 
-export async function probeMany(
-  hosts: string[],
-  concurrency = 32,
-): Promise<AliveResult[]> {
+export async function probeMany(hosts: string[], concurrency = 32): Promise<AliveResult[]> {
   const queue = [...new Set(hosts.map((h) => h.trim()).filter(Boolean))];
   const results: AliveResult[] = [];
   let i = 0;
