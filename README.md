@@ -22,7 +22,7 @@ within your engagement scope.
 ## Install
 
 ```bash
-git clone https://github.com/HackerX-offical/hx-alive-cli.git
+git clone https://github.com/HackerX-official/hx-alive-cli.git
 cd hx-alive-cli
 npm install
 npm run build
